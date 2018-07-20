@@ -1,4 +1,7 @@
 ## Customizable side menu for react-native
+
+**react-native-side-menu adds a TouchableWithoutFeedback component over the main screen when side menu is open which acts as an overlay. This change removes the the overlay which enables users to access main screen component.**
+
 <p align="center">
   <img src ="http://oi61.tinypic.com/2n9l2dz.jpg" />
 </p>
