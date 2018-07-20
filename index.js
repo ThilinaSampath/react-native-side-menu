@@ -132,16 +132,7 @@ export default class SideMenu extends React.Component {
    * @return {React.Component}
    */
   getContentView() {
-    let overlay: React.Element<void, void> = null;
-
-    if (this.isOpen) {
-      overlay = (
-        <TouchableWithoutFeedback onPress={() => this.openMenu(false)}>
-          <View style={styles.overlay} />
-        </TouchableWithoutFeedback>
-      );
-    }
-
+    
     const { width, height } = this.state;
     const ref = sideMenu => (this.sideMenu = sideMenu);
     const style = [
@@ -153,7 +144,6 @@ export default class SideMenu extends React.Component {
     return (
       <Animated.View style={style} ref={ref} {...this.responder.panHandlers}>
         {this.props.children}
-        {overlay}
       </Animated.View>
     );
   }
