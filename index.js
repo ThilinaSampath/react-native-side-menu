@@ -137,8 +137,8 @@ export default class SideMenu extends React.Component {
     const ref = sideMenu => (this.sideMenu = sideMenu);
     const style = [
       styles.frontView,
-      { width, height },
-      this.props.animationStyle(this.state.left),
+      { height },
+      this.props.animationStyle(this.state.left, (this.props.isOpen)? width - this.state.openMenuOffset: width),
     ];
 
     return (
@@ -281,10 +281,11 @@ SideMenu.defaultProps = {
   onStartShouldSetResponderCapture: () => true,
   onChange: () => {},
   onSliding: () => {},
-  animationStyle: value => ({
+  animationStyle: (value , width)=> ({
     transform: [{
       translateX: value,
     }],
+    width: width
   }),
   animationFunction: (prop, value) => Animated.spring(prop, {
     toValue: value,
