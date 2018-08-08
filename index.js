@@ -122,9 +122,8 @@ export default class SideMenu extends React.Component {
 
   onLayoutChange(e: Event) {
     const { width, height } = e.nativeEvent.layout;
-    const openMenuOffset = width * this.state.openOffsetMenuPercentage;
     const hiddenMenuOffset = width * this.state.hiddenMenuOffsetPercentage;
-    this.setState({ width, height, openMenuOffset, hiddenMenuOffset });
+    this.setState({ width, height, hiddenMenuOffset });
   }
 
   /**
@@ -133,12 +132,12 @@ export default class SideMenu extends React.Component {
    */
   getContentView() {
     
-    const { width, height } = this.state;
+    const { height } = this.state;
     const ref = sideMenu => (this.sideMenu = sideMenu);
     const style = [
       styles.frontView,
       { height },
-      this.props.animationStyle(this.state.left, (this.props.isOpen)? width - this.state.openMenuOffset: width),
+      this.props.animationStyle(this.state.left),
     ];
 
     return (
@@ -281,11 +280,10 @@ SideMenu.defaultProps = {
   onStartShouldSetResponderCapture: () => true,
   onChange: () => {},
   onSliding: () => {},
-  animationStyle: (value , width)=> ({
+  animationStyle: value => ({
     transform: [{
       translateX: value,
     }],
-    width: width
   }),
   animationFunction: (prop, value) => Animated.spring(prop, {
     toValue: value,
